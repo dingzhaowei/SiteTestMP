@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>TestMP - The Test Management Platform around Automation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TestMP is a platform managing test case, data, environment and providing metrics.">
+<meta name="keywords" content="Test Automation, Quality Metrics, Test Management, Continuous Integration">
+<meta name="author" content="Zhaowei Ding">
+
+<link href="./css/bootstrap.css" rel="stylesheet">
+<link href="./css/style.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
+<!-- <link href="./css/bootstrap-responsive.css" rel="stylesheet"> -->
+<link href="./css/css" rel="stylesheet" type="text/css">
+
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png"> -->
+
+<!-- Google Analytics -->
+<script type="text/javascript" async="" src="./js/ga.js"></script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-26154830-1' ]);
+	_gaq.push([ '_setDomainName', 'markdownpad.com' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </a> <a class="brand pull-right" href="./TestMP.html">Test<strong>MP</strong></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="./TestMP.html">Home</a></li>
+            <li><a href="https://sourceforge.net/projects/testmp/files/testmp-1.0.0.tar.gz/download">Download</a></li>
+            <li><a href="https://github.com/dingzhaowei/TestMP">Source Code</a></li>
+            <li><a href="#">News and Updates</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Logo -->
+    <div class="row">
+      <div class="span12 menu">
+        <div class="row">
+          <div class="span6">
+            <a href="./TestMP.html" title="TestMP -  The Test Management Platform around Automation"><img
+              src="./img/testmp-weblogo.png" width="252" height="96" alt="TestMP Logo"></a>
+          </div>
+          <div class="span6">
+            <br /> <br /> <br />
+            <p>
+              <strong>TestMP</strong> is a test management platform around <u>automation</u>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header/Screenshot -->
+    <header>
+      <!--<p><strong>TestMP</strong> is a test management platform around <u>automation</u>.</p>-->
+
+      <img src="./img/testmp.png" width="940" height="413" alt="TestMP Screenshot">
+
+      <!-- Download Button -->
+      <a class="btn btn-large btn-primary btn-download"
+        href="https://sourceforge.net/projects/testmp/files/testmp-1.0.0.tar.gz/download"> <span class="large">Download
+          TestMP</span> <br> <span class="small">Free | Windows, Linux, Mac</span>
+      </a>
+
+      <!-- Learn Button -->
+      <a class="btn btn-large btn-success btn-buy" href="https://markdownpad.com/buy.html"> <span class="large">View
+          TestMP Wiki</span> <br> <span class="small">Click to Learn More</span>
+      </a>
+    </header>
+
+    <!-- Features -->
+    <a name="features"></a>
+    <div class="row">
+      <div class="span12">
+        <h2>TestMP Features</h2>
+      </div>
+    </div>
+
+    <div class="row blocks">
+      <div class="span6">
+        <h4>Instant Update of Test Case Doc &amp; Status</h4>
+        <div class="row">
+          <div class="span3">
+            <img src="./img/TestMP-TestSync.png" width="220" height="163">
+            <!-- Image here 220x220 -->
+          </div>
+          <div class="span3">
+            <p>
+              <strong>Everything in automation code</strong>
+            </p>
+            <p>Document test cases just in code, and no longer bother to maintain them in another place.</p>
+            <p>The web console will instantly update test document and measures upon test run.</p>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <h4>Auto-generation of Metrics Report to Signoff</h4>
+        <div class="row">
+          <div class="span3">
+            <img src="./img/TestMP-TestMetrics.png" width="220" height="152">
+          </div>
+          <div class="span3">
+            <p>
+              <strong>Evaluate the automation test</strong>
+            </p>
+            <p>Test robustness, effectiveness, and efficiency will be evaluated into a clean but meaningful test
+              report.</p>
+            <p>You can signoff the report by marking "Accept" or "Refuse" and send it to the stakeholders!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row blocks">
+      <div class="span6">
+        <h4>Object-based Test Data Storage &amp; Service</h4>
+        <div class="row">
+          <div class="span3">
+            <img src="./img/TestMP-TestData.png" width="220" height="160">
+          </div>
+          <div class="span3">
+            <p>
+              <strong>Get test data <u>object</u> via service
+              </strong>
+            </p>
+            <p>You can add test data into the data store, categorize it by tags, and use it by API in automation.</p>
+            <p>The data is kept as object and can be complex. Different data can be merged together to be new.</p>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <h4>Centralized Test Environment Management</h4>
+        <div class="row">
+          <div class="span3">
+            <img src="./img/TestMP-TestEnv.png" width="220" height="140">
+          </div>
+          <div class="span3">
+            <p>
+              <strong>Manage the scripts everywhere</strong>
+            </p>
+            <p>Test environment tasks are defined, scheduled, and bounded to scripts on one or more local/remote
+              hosts.</p>
+            <p>Executions run concurrently, which can always be monitored and traced on the Web Console.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row blocks">
+      <div class="span6">
+        <h4>Continuous Integration (CI) Driven by Test</h4>
+        <div class="row">
+          <div class="span3">
+            <img src="./img/TestMP-Hosts.png" width="220" height="160">
+          </div>
+          <div class="span3">
+            <p>
+              <strong>And in distributed mode</strong>
+            </p>
+            <p>With test case, test data, test environments, and distributed task executions managed by TestMP,
+              automation process can be built more easily than ever before, and extended beyond test.</p>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <h4>Keep Tracing the Testing Team Work</h4>
+        <div class="row">
+          <div class="span3" align="center">
+            <img src="./img/lookforward.gif" width="100" height="100">
+          </div>
+          <div class="span3">
+            <p>
+              <strong>In plan...</strong>
+            </p>
+            <p>It is not easy to allocate the resource and evaluate the progress when managing a testing team
+              without in-depth understanding of the team member's work but not disturbing him/her.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <a name="about"></a>
+    <div class="row">
+      <div class="span12">
+        <h2>About TestMP</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span4">
+        <h4>Author</h4>
+        <p>
+          TestMP is developed by <a href="mailto:dingzhaowei@me.com">Zhaowei Ding</a>, <br />who is a SDET in Beijing,
+          China.
+        </p>
+        <p>
+          For updates, follow <a href="http://twitter.com/dingzw">@dingzw</a> on Twitter.
+        </p>
+      </div>
+      <div class="span4">
+        <h4>Technologies</h4>
+        <p>
+          TestMP is developed using Java and built on the <a href="https://code.google.com/p/smartgwt/">Smart GWT</a>
+          LGPL library.
+        </p>
+        <p>Please refer to the Wiki for detail.</p>
+      </div>
+      <div class="span4">
+        <h4>License</h4>
+        <p>TestMP is free software.</p>
+        <p>
+          You can redistribute it and/or modify it under the terms of <a href="http://opensource.org/licenses/MIT">the
+            MIT License (MIT)</a>.
+        </p>
+      </div>
+    </div>
+
+    <hr>
+
+    <footer>
+      <div class="row">
+        <div class="span6">
+          <p>
+            Copyright © 2013 <a href="mailto: dingzhaowei@me.com">Zhaowei Ding</a>
+          </p>
+        </div>
+        <div class="span3" style="float: right;">
+          <p style="text-align: right;" class="small">
+            <a href="http://markdownpad.com/privacy.html">Privacy Policy</a> | <a
+              href="http://markdownpad.com/eula.html">EULA</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- /container -->
+
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bootstrap-transition.js"></script>
+  <script src="./js/bootstrap-modal.js"></script>
+
+
+
+</body>
+</html>
