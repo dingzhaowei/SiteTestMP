@@ -5,6 +5,6 @@
 <web-app>
 	<display-name>testmp-site</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>TestMP.html</welcome-file>
 	</welcome-file-list>
 </web-app>
