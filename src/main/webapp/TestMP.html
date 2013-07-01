@@ -33,14 +33,20 @@ body {
 <!-- Google Analytics -->
 <script type="text/javascript" async="" src="./js/ga.js"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
 
-  ga('create', 'UA-42130400-1', 'testmp.org');
-  ga('send', 'pageview');
-
+	ga('create', 'UA-42130400-1', 'testmp.org');
+	ga('send', 'pageview');
 </script>
 </head>
 
@@ -100,8 +106,8 @@ body {
       </a>
 
       <!-- Learn Button -->
-      <a class="btn btn-large btn-success btn-buy" href="./TestMP-Wiki.html"> <span class="large">View
-          TestMP Wiki</span> <br> <span class="small">Click to Learn More</span>
+      <a class="btn btn-large btn-success btn-buy" href="./TestMP-Wiki.html"> <span class="large">View TestMP
+          Wiki</span> <br> <span class="small">Click to Learn More</span>
       </a>
     </header>
 
@@ -184,31 +190,12 @@ body {
     </div>
 
     <div class="row blocks">
-      <div class="span6">
-        <h4>Continuous Integration (CI) Driven by Test</h4>
-        <div class="row">
-          <div class="span3">
-            <img src="./img/TestMP-Hosts.png" width="220" height="160">
-          </div>
-          <div class="span3">
-            <p>
-              <strong>And in distributed mode</strong>
-            </p>
-            <p>With test case, test data, test environments, and distributed task executions managed by TestMP,
-              automation process can be built more easily than ever before, and extended beyond test.</p>
-          </div>
-        </div>
-      </div>
-      <div class="span6">
+      <div class="span6 offset3" style="text-align: center;">
         <h4>Keep Tracing the Testing Team Work</h4>
         <div class="row">
-          <div class="span3" align="center">
-            <img src="./img/lookforward.gif" width="100" height="100">
-          </div>
-          <div class="span3">
-            <p>
-              It's in progress, and will be integrated to the next release.
-            </p>
+
+          <div class="span6">
+            <p>It's in progress, and will be integrated to the next release.</p>
             <p></p>
           </div>
         </div>
@@ -228,7 +215,7 @@ body {
         <h4>Author</h4>
         <p>
           TestMP is developed by <a href="mailto:dingzhaowei@me.com">Zhaowei Ding</a>, <br />who is a software engineer
-	  in Beijing, China.
+          in Beijing, China.
         </p>
         <p>
           For updates, follow <a href="http://weibo.com/stwalker">@_dingzw</a> on Weibo.
@@ -238,8 +225,8 @@ body {
         <h4>Technologies</h4>
         <p>
           TestMP is developed using Java and powered by <a href="https://code.google.com/p/smartgwt/">Smart GWT</a>
-          library, <a href="http://www.oracle.com/technetwork/database/berkeleydb/overview/index-093405.html"> Berkeley
-	  DB</a>, and the others mentioned in the <a href="./TestMP-Wiki.html">Wiki</a>.
+          library, <a href="http://www.oracle.com/technetwork/database/berkeleydb/overview/index-093405.html">
+            Berkeley DB</a>, and the others mentioned in the <a href="./TestMP-Wiki.html">Wiki</a>.
         </p>
       </div>
       <div class="span4">
@@ -258,7 +245,9 @@ body {
       <div class="row">
         <div class="span6">
           <p>
-            Copyright © 2013 <a href="m&#97;&#x69;&#x6C;&#x74;&#111;:&#100;&#x69;&#x6E;&#103;&#x7A;&#x68;&#97;&#111;&#119;&#x65;&#105;&#x40;&#x6D;&#101;&#x2E;&#x63;&#x6F;&#109;">Zhaowei Ding</a>
+            Copyright © 2013 <a
+              href="m&#97;&#x69;&#x6C;&#x74;&#111;:&#100;&#x69;&#x6E;&#103;&#x7A;&#x68;&#97;&#111;&#119;&#x65;&#105;&#x40;&#x6D;&#101;&#x2E;&#x63;&#x6F;&#109;">Zhaowei
+              Ding</a>
           </p>
         </div>
       </div>
