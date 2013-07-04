@@ -85,7 +85,105 @@ body {
     </div>
 
     <!-- Wiki content-->
-    <div class="row"></div>
+    <div class="row">
+      <div class="span12">
+<!-- Converted from Markdown -->
+<h1>Setup</h1>
+<p>Once downloaded, unpack the compressed folder to see the structure of (the compiled) TestMP. You'll see a structure like this:</p>
+<pre><code>testmp/
+|-- bin/      # contains the scripts for startup &amp; maintenace.
+|-- conf/     # contains the configuration file.
+|-- data/     # contains the database files.
+|-- lib/      # contains the TestMP client libraries. 
+|-- log/      # contains the generated log files.
+|-- webapp/   # contains the wars of WebConsole and DataStore.
+|-- README.md
+</code></pre>
+
+<p>It's not forced but recommended that you set the TESTMP_HOME environment variable, of which the value is the path to the <em>testmp/</em>, if you hope to launch TestMP outside such directory.</p>
+<p>Before running TestMP, you also need to have Java Runtime Environment (Version 6 or the above) installed, and make sure the JAVA_HOME is set correctly.</p>
+<h1>Configuration</h1>
+<p>You will find most TestMP configurations in the <em>conf/testmp.properties</em>:</p>
+<pre><code># The launching url of the DataStore each for test case, data, and environment.
+testCaseStoreUrl=http://localhost:10081/DataStore.do
+testDataStoreUrl=http://localhost:10082/DataStore.do
+testEnvStoreUrl=http://localhost:10083/DataStore.do
+
+# The number of threads for concurrently running task.
+executionThreadNum=10
+# The timeout for task execution. 0 means no timeout.
+executionTimeout=0
+
+# The time gap (in seconds) between two refreshings of the task schedule.
+scheduleRefreshingTimeGap=1800
+# The maximum latency (in seconds) to trigger a scheduled task, or ignore it.
+taskTriggerMaxLatency=600
+
+# The default recipient list and subject of the test metrics report. 
+testMetricsReportRecipients=
+testMetricsReportSubject=
+
+# The default recipient list and subject of the test env status report.
+envStatusReportRecipients=
+envStatusReportSubject=
+
+# The default SMTP settings to sending the report.
+smtpSettingHost=
+smtpSettingPort=25
+smtpSettingUser=
+smtpSettingPass=
+smtpSettingSTARTTLS=true
+</code></pre>
+
+<p>While most settings can be left to its default value, <em>testCaseStoreUrl</em>, <em>testDataUrl</em>, <em>testEnvUrl</em> may need to be modified if the default listening ports have been occupied or they are launched remotely.</p>
+<p>It's also possible to make these urls the same to share only one datastore. But in practice it will not be efficient and may cause confusion.</p>
+<p>The settings of <em>*ReportRecipients</em>, <em>*ReportSubject</em>, and <em>smtpSetting*</em> are for your convenience. You can always input/modify them manually on the TestMP Web Console.</p>
+<h1>Launch the TestMP</h1>
+<p>Now we're ready to startup the TestMP!</p>
+<ul>
+<li>
+<p>On Windows</p>
+<pre><code>cd TESTMP_HOME/bin
+startup.bat [port]
+</code></pre>
+
+</li>
+<li>
+<p>On Linux / Mac</p>
+<pre><code>cd TESTMP_HOME/bin
+./startup.sh [port]
+</code></pre>
+
+</li>
+</ul>
+<p>The argument <em>port</em> is optional. If it is not given, the Web Console will defaultly use 10080 as the listening port. Then you may see the output like this:</p>
+<pre><code>launching testCaseStore on 10081
+launching testDataStore on 10082
+launching testEnvStore on 10083
+launching TestMP web console on 10080
+...
+2013-07-04 14:26:55.634:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:10080
+</code></pre>
+
+<p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
+<p>Open your favorite browser, enter &quot;http://yourhost:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
+<h1>Test Case</h1>
+<p><strong>Instant Update of Test Case Doc &amp; Status</strong></p>
+<p>TBD</p>
+<h1>Test Metrics</h1>
+<p><strong>Auto-generation of Metrics Report to Signoff</strong></p>
+<p>TBD</p>
+<h1>Test Data</h1>
+<p><strong>Object-based Test Data Storage &amp; Service</strong></p>
+<p>TBD</p>
+<h1>Test Environment</h1>
+<p><strong>Task-driven and Centralized Environment Management</strong></p>
+<p>TBD</p>
+<!-- End: Converted from Markdown -->
+      </div>
+    </div>
+
+    <hr>
 
     <footer>
       <div class="row">
