@@ -147,13 +147,13 @@ The two code snippets below show examples about how to add document to test case
 
 Pass the JVM arguments below when running the test (according to how you run the automation):
 
->testCaseStoreUrl - specify the datastore of test case.
+>*testCaseStoreUrl* - specify the datastore of test case.
 
->updateTestDocument - whether to automatically update the test document.
+>*updateTestDocument* - whether to automatically update the test document.
 
->updateTestMeasures - whether to automatically update the test measures.
+>*updateTestMeasures* - whether to automatically update the test measures.
 
->runHistoryCapacity - the fixed length of the queue contains test run records.
+>*runHistoryCapacity* - the fixed length of the queue contains test run records.
 
 Example:
 

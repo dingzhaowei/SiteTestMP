@@ -167,17 +167,86 @@ launching TestMP web console on 10080
 
 <p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
 <p>Open your favorite browser, enter &quot;http://yourhost:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
-<h1>Test Case</h1>
-<p><strong>Instant Update of Test Case Doc &amp; Status</strong></p>
+<h1>Automation on TestMP</h1>
+<h3>Bind Automation Test Cases to TestMP</h3>
+<p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. </p>
+<p><strong>Test Measures</strong>:</p>
+<blockquote>
+<p><em>robustness</em> - a score between [0.0 - 1.0] that reflects the quality robustness of the function covered by this test case.</p>
+<p><em>robustness trend</em> - the trend of the robustness change: always good, always bad, upgrading, or degrading.</p>
+<p><em>average test time</em> - the average time consumed by running a test case, which is evaluated from its run history.</p>
+<p><em>test time volatility</em> - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.</p>
+</blockquote>
+<p>And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.</p>
+<p>To bind automation test cases to TestMP, you need to put <em>lib/testsync-[version].jar</em> on the class path of your automation test.</p>
+<p>TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from <em>TestSyncForJUnit</em>; For TestNG test, 
+no additional step is needed.</p>
+<p>The two code snippets below show examples about how to add document to test case with Annotation <em>@TestDoc</em>:</p>
+<ul>
+<li>
+<p>TestNG</p>
+<pre><code>public class TestSyncForTestNGTest {
+
+    @Test(groups = { &quot;P0&quot;, &quot;sanity test&quot; })
+    @TestDoc(
+        project = &quot;project name&quot;, 
+        name = &quot;test case name&quot;, 
+        description = &quot;test case description&quot;)
+    public void testSomething() {
+        // test steps
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>JUnit</p>
+<pre><code>public class TestSyncForJUnitTest extends TestSyncForJUnit {
+
+    @TestDoc(
+        project = &quot;project name&quot;, 
+        name = &quot;test case name&quot;, 
+        description = &quot;test case description&quot;, 
+        groups = { &quot;P0&quot;, &quot;prod&quot; })
+    @Test
+    public void testSomething() throws Exception {
+        // test steps
+    }
+}
+</code></pre>
+
+</li>
+</ul>
+<p><em>@TestDoc</em> has four attributes, of which the meaning is intuitive, and all of them are not required:</p>
+<blockquote>
+<p><em>project</em> defaults to the simple class name of the test case.</p>
+<p><em>name</em> defaults to the the test method name.</p>
+<p><em>description</em> defaults to be empty.</p>
+<p><em>groups</em> defaults to be empty.</p>
+</blockquote>
+<pre><code>For TestNG, the groups attribute in its @Test annotation can be automatically found and merged to @TestDoc
+</code></pre>
+
+<p>Pass the JVM arguments below when running the test (according to how you run the automation):</p>
+<blockquote>
+<p><em>testCaseStoreUrl</em> - specify the datastore of test case.</p>
+<p><em>updateTestDocument</em> - whether to automatically update the test document.</p>
+<p><em>updateTestMeasures</em> - whether to automatically update the test measures.</p>
+<p><em>runHistoryCapacity</em> - the fixed length of the queue contains test run records.</p>
+</blockquote>
+<p>Example:</p>
+<pre><code>-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://54.87.13.39:10081/DataStore.do
+</code></pre>
+
+<p>Only <em>testCaseStoreUrl</em> is required, whose value should refer to the same setting in the <em>conf/testmp.properties</em>, and you may need to replace its host name with the remote accessing address if it's specified as &quot;localhost&quot;.</p>
+<p><em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong> to avoid unintended updates, like when debuging the test case. <em>runHistoryCapacity</em> defaults to <strong>30</strong>.</p>
+<p>Then after the test run completes, you should be able to find the corresponding record on the TestMP WebConsole, like below:</p>
+<p><img src="./img/Wiki-TestSync.png" /></p>
+<h3>Create, Signoff and Send Test Metrics Report</h3>
 <p>TBD</p>
-<h1>Test Metrics</h1>
-<p><strong>Auto-generation of Metrics Report to Signoff</strong></p>
+<h3>Integrate Automation with Test Data Service</h3>
 <p>TBD</p>
-<h1>Test Data</h1>
-<p><strong>Object-based Test Data Storage &amp; Service</strong></p>
-<p>TBD</p>
-<h1>Test Environment</h1>
-<p><strong>Task-driven and Centralized Environment Management</strong></p>
+<h3>Task-driven Test Environment Management</h3>
 <p>TBD</p>
 <!-- End: Converted from Markdown -->
       </div>
