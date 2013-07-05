@@ -81,7 +81,7 @@ Open your favorite browser, enter "http://yourhost:10080" in the address bar and
 
 # Automation on TestMP #
 
-### Bind Automation Test Cases to TestMP ###
+## Bind Automation Test Cases to TestMP ##
 
 By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. 
 
@@ -165,16 +165,34 @@ Only *testCaseStoreUrl* is required, whose value should refer to the same settin
 
 Then after the test run completes, you should be able to find the corresponding record on the TestMP WebConsole, like below:
 
-![](./img/Wiki-TestSync.png)
+![Wiki-TestSync.png](./img/Wiki-TestSync.png)
 
-### Create, Signoff and Send Test Metrics Report ###
+## Create, Signoff and Send Test Metrics Report ##
+
+Open the TestMP Web Console, and select the "Test Case" tab. By clicking the *Filter* button, and specifying the conditions, you can filter out the test cases that to be included in the test metrics report. Otherwise all the test cases shown on the page will be evaluated.
+
+Clicking the *Report* button will generate the test metrics report waiting for signoff, which includes metrics for each project as follows:
+
+> *Total Tests* - the number of test cases selected from this project.
+>
+> *Groups (tags)* - the number different groups involved in this test.
+> 
+> *Robustness* - the distribution of different quality robustness status that is evaluated from the test case's run history.
+> 
+> *Effectiveness* - reflecting whether the test is effective to find real bugs and minimize the number of false alarmings.
+> 
+> *Efficiency* - reflecting whether the test ran fast and stably enough.
+
+![Wiki-MetricsReport.png](./img/Wiki-MetricsReport.png)
+
+You mark each project as "Accept" or "Refuse" based on the metrics, and click the *Signoff* button to get the final report. Now it's ready to send the report to the stakeholders.
+
+Click the *Send* button at the bottom of the report, and you'll see the "Send Report" window. To save the effort of filling the Email and SMTP fields again and again, you can set the default input in *conf/testmp.properties*.
+
+## Integrate Automation with Test Data Service ##
 
 TBD
 
-### Integrate Automation with Test Data Service ###
-
-TBD
-
-### Task-driven Test Environment Management  ###
+## Task-driven Test Environment Management  ##
 
 TBD

@@ -58,11 +58,11 @@ body {
         <div class="nav-collapse">
           <ul class="nav">
             <li><a href="./TestMP.html">Home</a></li>
-            <li><a href="https://sourceforge.net/projects/testmp/files/testmp-1.0.0.tar.gz/download">Download</a></li>
+            <li><a href="https://sourceforge.net/projects/testmp/files/">Download</a></li>
             <li><a href="https://github.com/dingzhaowei/TestMP">Source Code</a></li>
             <li class="active"><a href="./TestMP-Wiki.html">Wiki</a></li>
             <li><a href="#">Releases</a></li>
-            <li><a href="#">Forum</a></li>
+            <li><a href="https://github.com/dingzhaowei/TestMP/issues">Issues</a></li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -168,7 +168,7 @@ launching TestMP web console on 10080
 <p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
 <p>Open your favorite browser, enter &quot;http://yourhost:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
 <h1>Automation on TestMP</h1>
-<h3>Bind Automation Test Cases to TestMP</h3>
+<h2>Bind Automation Test Cases to TestMP</h2>
 <p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. </p>
 <p><strong>Test Measures</strong>:</p>
 <blockquote>
@@ -241,12 +241,23 @@ no additional step is needed.</p>
 <p>Only <em>testCaseStoreUrl</em> is required, whose value should refer to the same setting in the <em>conf/testmp.properties</em>, and you may need to replace its host name with the remote accessing address if it's specified as &quot;localhost&quot;.</p>
 <p><em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong> to avoid unintended updates, like when debuging the test case. <em>runHistoryCapacity</em> defaults to <strong>30</strong>.</p>
 <p>Then after the test run completes, you should be able to find the corresponding record on the TestMP WebConsole, like below:</p>
-<p><img src="./img/Wiki-TestSync.png" /></p>
-<h3>Create, Signoff and Send Test Metrics Report</h3>
+<p><img src="./img/Wiki-TestSync.png" alt="Wiki-TestSync.png" /></p>
+<h2>Create, Signoff and Send Test Metrics Report</h2>
+<p>Open the TestMP Web Console, and select the &quot;Test Case&quot; tab. By clicking the <em>Filter</em> button, and specifying the conditions, you can filter out the test cases that to be included in the test metrics report. Otherwise all the test cases shown on the page will be evaluated.</p>
+<p>Clicking the <em>Report</em> button will generate the test metrics report waiting for signoff, which includes metrics for each project as follows:</p>
+<blockquote>
+<p><em>Total Tests</em> - the number of test cases selected from this project.</p>
+<p><em>Groups (tags)</em> - the number different groups involved in this test.</p>
+<p><em>Robustness</em> - the distribution of different quality robustness status that is evaluated from the test case's run history.</p>
+<p><em>Effectiveness</em> - reflecting whether the test is effective to find real bugs and minimize the number of false alarmings.</p>
+<p><em>Efficiency</em> - reflecting whether the test ran fast and stably enough.</p>
+</blockquote>
+<p><img src="./img/Wiki-MetricsReport.png" alt="Wiki-MetricsReport.png" /></p>
+<p>You mark each project as &quot;Accept&quot; or &quot;Refuse&quot; based on the metrics, and click the <em>Signoff</em> button to get the final report. Now it's ready to send the report to the stakeholders.</p>
+<p>Click the <em>Send</em> button at the bottom of the report, and you'll see the &quot;Send Report&quot; window. To save the effort of filling the Email and SMTP fields again and again, you can set the default input in <em>conf/testmp.properties</em>.</p>
+<h2>Integrate Automation with Test Data Service</h2>
 <p>TBD</p>
-<h3>Integrate Automation with Test Data Service</h3>
-<p>TBD</p>
-<h3>Task-driven Test Environment Management</h3>
+<h2>Task-driven Test Environment Management</h2>
 <p>TBD</p>
 <!-- End: Converted from Markdown -->
       </div>
