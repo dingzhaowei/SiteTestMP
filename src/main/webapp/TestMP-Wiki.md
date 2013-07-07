@@ -97,7 +97,7 @@ By binding automation test cases to TestMP, the test case document can be instan
 
 And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.
 
-To bind automation test cases to TestMP, you need to put *lib/testsync-[version].jar* on the class path of your automation test.
+To bind automation test cases to TestMP, you need to put *lib/\*.jar* on the class path of your automation test.
 
 TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from *TestSyncForJUnit*; For TestNG test, 
 no additional step is needed.
@@ -190,6 +190,20 @@ You mark each project as "Accept" or "Refuse" based on the metrics, and click th
 Click the *Send* button at the bottom of the report, and you'll see the "Send Report" window. To save the effort of filling the Email and SMTP fields again and again, you can set the default input in *conf/testmp.properties*.
 
 ## Integrate Automation with Test Data Service ##
+
+TestMP provides an object-oriented test data service. The test data is stored at the server side instead of hard-coded in the automation code or data files of XML or the other formats. Each data can have one or more tags to describe itself, which is useful when you want some data having certain tags.
+
+You will use a group of APIs to access the datastore to find/fetch the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.
+
+To access the datastore, you need to put the *lib/\*.jar*  on the class path of your automation test. Then initialize a *DataStoreClient* instance as below:
+
+	DataStoreClient client = new DataStoreClient(testDataStoreUrl);
+
+The *testDataStoreUrl* is required, whose value should refer to the same setting in the *conf/testmp.properties*, and you may need to replace its host name with the remote accessing address if it's specified as "localhost".
+
+Then all the data-related accessing methods wrapped in the client can be used through this  instance, referring to the [api doc](./datastore-client-apidocs/index.html). 
+
+Here I will show several typical examples to demonstrate the usages:
 
 TBD
 

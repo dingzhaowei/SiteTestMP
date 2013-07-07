@@ -89,7 +89,9 @@ body {
       <div class="span12">
 <!-- Converted from Markdown -->
 <h1>Setup</h1>
+
 <p>Once downloaded, unpack the compressed folder to see the structure of (the compiled) TestMP. You'll see a structure like this:</p>
+
 <pre><code>testmp/
 |-- bin/      # contains the scripts for startup &amp; maintenace.
 |-- conf/     # contains the configuration file.
@@ -101,9 +103,13 @@ body {
 </code></pre>
 
 <p>It's not forced but recommended that you set the TESTMP_HOME environment variable, of which the value is the path to the <em>testmp/</em>, if you hope to launch TestMP outside such directory.</p>
+
 <p>Before running TestMP, you also need to have Java Runtime Environment (Version 6 or the above) installed, and make sure the JAVA_HOME is set correctly.</p>
+
 <h1>Configuration</h1>
+
 <p>You will find most TestMP configurations in the <em>conf/testmp.properties</em>:</p>
+
 <pre><code># The launching url of the DataStore each for test case, data, and environment.
 testCaseStoreUrl=http://localhost:10081/DataStore.do
 testDataStoreUrl=http://localhost:10082/DataStore.do
@@ -136,27 +142,31 @@ smtpSettingSTARTTLS=true
 </code></pre>
 
 <p>While most settings can be left to its default value, <em>testCaseStoreUrl</em>, <em>testDataUrl</em>, <em>testEnvUrl</em> may need to be modified if the default listening ports have been occupied or they are launched remotely.</p>
+
 <p>It's also possible to make these urls the same to share only one datastore. But in practice it will not be efficient and may cause confusion.</p>
+
 <p>The settings of <em>*ReportRecipients</em>, <em>*ReportSubject</em>, and <em>smtpSetting*</em> are for your convenience. You can always input/modify them manually on the TestMP Web Console.</p>
+
 <h1>Launch the TestMP</h1>
+
 <p>Now we're ready to startup the TestMP!</p>
+
 <ul>
-<li>
-<p>On Windows</p>
-<pre><code>cd TESTMP_HOME/bin
-startup.bat [port]
-</code></pre>
+<li><p>On Windows</p>
 
-</li>
-<li>
-<p>On Linux / Mac</p>
-<pre><code>cd TESTMP_HOME/bin
-./startup.sh [port]
-</code></pre>
+<pre><code>  cd TESTMP_HOME/bin
+  startup.bat [port]
+</code></pre></li>
+<li><p>On Linux / Mac</p>
 
-</li>
+<pre><code>  cd TESTMP_HOME/bin
+  ./startup.sh [port]
+</code></pre></li>
 </ul>
+
+
 <p>The argument <em>port</em> is optional. If it is not given, the Web Console will defaultly use 10080 as the listening port. Then you may see the output like this:</p>
+
 <pre><code>launching testCaseStore on 10081
 launching testDataStore on 10082
 launching testEnvStore on 10083
@@ -166,98 +176,146 @@ launching TestMP web console on 10080
 </code></pre>
 
 <p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
-<p>Open your favorite browser, enter &quot;http://yourhost:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
+
+<p>Open your favorite browser, enter "http://yourhost:10080" in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
+
 <h1>Automation on TestMP</h1>
+
 <h2>Bind Automation Test Cases to TestMP</h2>
-<p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. </p>
+
+<p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows.</p>
+
 <p><strong>Test Measures</strong>:</p>
-<blockquote>
-<p><em>robustness</em> - a score between [0.0 - 1.0] that reflects the quality robustness of the function covered by this test case.</p>
+
+<blockquote><p><em>robustness</em> - a score between [0.0 - 1.0] that reflects the quality robustness of the function covered by this test case.</p>
+
 <p><em>robustness trend</em> - the trend of the robustness change: always good, always bad, upgrading, or degrading.</p>
+
 <p><em>average test time</em> - the average time consumed by running a test case, which is evaluated from its run history.</p>
-<p><em>test time volatility</em> - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.</p>
-</blockquote>
+
+<p><em>test time volatility</em> - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.</p></blockquote>
+
 <p>And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.</p>
-<p>To bind automation test cases to TestMP, you need to put <em>lib/testsync-[version].jar</em> on the class path of your automation test.</p>
-<p>TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from <em>TestSyncForJUnit</em>; For TestNG test, 
+
+<p>To bind automation test cases to TestMP, you need to put <em>lib/*.jar</em> on the class path of your automation test.</p>
+
+<p>TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from <em>TestSyncForJUnit</em>; For TestNG test,
 no additional step is needed.</p>
+
 <p>The two code snippets below show examples about how to add document to test case with Annotation <em>@TestDoc</em>:</p>
+
 <ul>
-<li>
-<p>TestNG</p>
-<pre><code>public class TestSyncForTestNGTest {
+<li><p>TestNG</p>
 
-    @Test(groups = { &quot;P0&quot;, &quot;sanity test&quot; })
-    @TestDoc(
-        project = &quot;project name&quot;, 
-        name = &quot;test case name&quot;, 
-        description = &quot;test case description&quot;)
-    public void testSomething() {
-        // test steps
-    }
-}
-</code></pre>
+<pre><code>  public class TestSyncForTestNGTest {
 
-</li>
-<li>
-<p>JUnit</p>
-<pre><code>public class TestSyncForJUnitTest extends TestSyncForJUnit {
+      @Test(groups = { "P0", "sanity test" })
+      @TestDoc(
+          project = "project name", 
+          name = "test case name", 
+          description = "test case description")
+      public void testSomething() {
+          // test steps
+      }
+  }
+</code></pre></li>
+<li><p>JUnit</p>
 
-    @TestDoc(
-        project = &quot;project name&quot;, 
-        name = &quot;test case name&quot;, 
-        description = &quot;test case description&quot;, 
-        groups = { &quot;P0&quot;, &quot;prod&quot; })
-    @Test
-    public void testSomething() throws Exception {
-        // test steps
-    }
-}
-</code></pre>
+<pre><code>  public class TestSyncForJUnitTest extends TestSyncForJUnit {
 
-</li>
+      @TestDoc(
+          project = "project name", 
+          name = "test case name", 
+          description = "test case description", 
+          groups = { "P0", "prod" })
+      @Test
+      public void testSomething() throws Exception {
+          // test steps
+      }
+  }
+</code></pre></li>
 </ul>
+
+
 <p><em>@TestDoc</em> has four attributes, of which the meaning is intuitive, and all of them are not required:</p>
-<blockquote>
-<p><em>project</em> defaults to the simple class name of the test case.</p>
+
+<blockquote><p><em>project</em> defaults to the simple class name of the test case.</p>
+
 <p><em>name</em> defaults to the the test method name.</p>
+
 <p><em>description</em> defaults to be empty.</p>
-<p><em>groups</em> defaults to be empty.</p>
-</blockquote>
+
+<p><em>groups</em> defaults to be empty.</p></blockquote>
+
 <pre><code>For TestNG, the groups attribute in its @Test annotation can be automatically found and merged to @TestDoc
 </code></pre>
 
 <p>Pass the JVM arguments below when running the test (according to how you run the automation):</p>
-<blockquote>
-<p><em>testCaseStoreUrl</em> - specify the datastore of test case.</p>
+
+<blockquote><p><em>testCaseStoreUrl</em> - specify the datastore of test case.</p>
+
 <p><em>updateTestDocument</em> - whether to automatically update the test document.</p>
+
 <p><em>updateTestMeasures</em> - whether to automatically update the test measures.</p>
-<p><em>runHistoryCapacity</em> - the fixed length of the queue contains test run records.</p>
-</blockquote>
+
+<p><em>runHistoryCapacity</em> - the fixed length of the queue contains test run records.</p></blockquote>
+
 <p>Example:</p>
+
 <pre><code>-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://54.87.13.39:10081/DataStore.do
 </code></pre>
 
-<p>Only <em>testCaseStoreUrl</em> is required, whose value should refer to the same setting in the <em>conf/testmp.properties</em>, and you may need to replace its host name with the remote accessing address if it's specified as &quot;localhost&quot;.</p>
+<p>Only <em>testCaseStoreUrl</em> is required, whose value should refer to the same setting in the <em>conf/testmp.properties</em>, and you may need to replace its host name with the remote accessing address if it's specified as "localhost".</p>
+
 <p><em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong> to avoid unintended updates, like when debuging the test case. <em>runHistoryCapacity</em> defaults to <strong>30</strong>.</p>
+
 <p>Then after the test run completes, you should be able to find the corresponding record on the TestMP WebConsole, like below:</p>
+
 <p><img src="./img/Wiki-TestSync.png" alt="Wiki-TestSync.png" /></p>
+
 <h2>Create, Signoff and Send Test Metrics Report</h2>
-<p>Open the TestMP Web Console, and select the &quot;Test Case&quot; tab. By clicking the <em>Filter</em> button, and specifying the conditions, you can filter out the test cases that to be included in the test metrics report. Otherwise all the test cases shown on the page will be evaluated.</p>
+
+<p>Open the TestMP Web Console, and select the "Test Case" tab. By clicking the <em>Filter</em> button, and specifying the conditions, you can filter out the test cases that to be included in the test metrics report. Otherwise all the test cases shown on the page will be evaluated.</p>
+
 <p>Clicking the <em>Report</em> button will generate the test metrics report waiting for signoff, which includes metrics for each project as follows:</p>
-<blockquote>
-<p><em>Total Tests</em> - the number of test cases selected from this project.</p>
+
+<blockquote><p><em>Total Tests</em> - the number of test cases selected from this project.</p>
+
 <p><em>Groups (tags)</em> - the number different groups involved in this test.</p>
+
 <p><em>Robustness</em> - the distribution of different quality robustness status that is evaluated from the test case's run history.</p>
+
 <p><em>Effectiveness</em> - reflecting whether the test is effective to find real bugs and minimize the number of false alarmings.</p>
-<p><em>Efficiency</em> - reflecting whether the test ran fast and stably enough.</p>
-</blockquote>
+
+<p><em>Efficiency</em> - reflecting whether the test ran fast and stably enough.</p></blockquote>
+
 <p><img src="./img/Wiki-MetricsReport.png" alt="Wiki-MetricsReport.png" /></p>
-<p>You mark each project as &quot;Accept&quot; or &quot;Refuse&quot; based on the metrics, and click the <em>Signoff</em> button to get the final report. Now it's ready to send the report to the stakeholders.</p>
-<p>Click the <em>Send</em> button at the bottom of the report, and you'll see the &quot;Send Report&quot; window. To save the effort of filling the Email and SMTP fields again and again, you can set the default input in <em>conf/testmp.properties</em>.</p>
+
+<p>You mark each project as "Accept" or "Refuse" based on the metrics, and click the <em>Signoff</em> button to get the final report. Now it's ready to send the report to the stakeholders.</p>
+
+<p>Click the <em>Send</em> button at the bottom of the report, and you'll see the "Send Report" window. To save the effort of filling the Email and SMTP fields again and again, you can set the default input in <em>conf/testmp.properties</em>.</p>
+
 <h2>Integrate Automation with Test Data Service</h2>
+
+<p>TestMP provides an object-oriented test data service. The test data is stored at the server side instead of hard-coded in the automation code or data files of XML or the other formats. Each data can have one or more tags to describe itself, which is useful when you want some data having certain tags.</p>
+
+<p>You will use a group of APIs to access the datastore to find/fetch the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.</p>
+
+<p>To access the datastore, you need to put the <em>lib/*.jar</em>  on the class path of your automation test. Then initialize a <em>DataStoreClient</em> instance as below:</p>
+
+<pre><code>DataStoreClient client = new DataStoreClient(testDataStoreUrl);
+</code></pre>
+
+<p>The <em>testDataStoreUrl</em> is required, whose value should refer to the same setting in the <em>conf/testmp.properties</em>, and you may need to replace its host name with the remote accessing address if it's specified as "localhost".</p>
+
+<p>Then all the data-related accessing methods wrapped in the client can be used through this  instance, referring to the <a href="./datastore-client-apidocs/index.html">api doc</a>.</p>
+
+<p>Here I will show several typical examples to demonstrate the usages:</p>
+
 <p>TBD</p>
+
 <h2>Task-driven Test Environment Management</h2>
+
 <p>TBD</p>
 <!-- End: Converted from Markdown -->
       </div>
