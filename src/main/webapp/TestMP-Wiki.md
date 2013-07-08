@@ -159,7 +159,7 @@ Example:
 
 	-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://54.87.13.39:10081/DataStore.do
 
-Only *testCaseStoreUrl* is required, whose value should refer to the same setting in the *conf/testmp.properties*, and you may need to replace its host name with the remote accessing address if it's specified as "localhost".
+Only *testCaseStoreUrl* is required. You should refer its value to the same setting in the *conf/testmp.properties*, and may need to replace its host name with the remote accessing address if it's specified as "localhost".
 
 *updateTestDocument* and *updateTestMeasures* default to **false** to avoid unintended updates, like when debuging the test case. *runHistoryCapacity* defaults to **30**.
 
@@ -193,19 +193,143 @@ Click the *Send* button at the bottom of the report, and you'll see the "Send Re
 
 TestMP provides an object-oriented test data service. The test data is stored at the server side instead of hard-coded in the automation code or data files of XML or the other formats. Each data can have one or more tags to describe itself, which is useful when you want some data having certain tags.
 
-You will use a group of APIs to access the datastore to find/fetch the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.
+You will use a group of APIs to access the datastore to find / get the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.
 
-To access the datastore, you need to put the *lib/\*.jar*  on the class path of your automation test. Then initialize a *DataStoreClient* instance as below:
+To access the datastore, you need to put the *lib/datastore-client-\*.jar* and its dependencies  on the class path of your automation test. Then initialize a *DataStoreClient* instance as below:
 
 	DataStoreClient client = new DataStoreClient(testDataStoreUrl);
 
-The *testDataStoreUrl* is required, whose value should refer to the same setting in the *conf/testmp.properties*, and you may need to replace its host name with the remote accessing address if it's specified as "localhost".
+The *testDataStoreUrl* is required. You should refer its value to the same setting in the *conf/testmp.properties*, and may need to replace its host name with the remote accessing address if it's specified as "localhost".
 
 Then all the data-related accessing methods wrapped in the client can be used through this  instance, referring to the [api doc](./datastore-client-apidocs/index.html). 
 
-Here I will show several typical examples to demonstrate the usages:
+For example, we have some data of types like below, which are expected to be used in the automation test.
 
-TBD
+	class BaseOrder {
+		Customer customer;
+		Provider provider;
+		Integer productId;
+
+		BaseOrder(customer, provider, productId);
+	}
+
+	class SingleOrder extends BaseOrder {
+		Integer count;
+		String shipDate;
+
+		SingleOrder(customer, provider, productId, count, shipDate);
+	}
+
+	class MultiOrder extends BaseOrder {
+		Integer total;
+		Integer[] countPerOrder;
+		String[] shipDatePerOrder;
+
+		MultiOrder(customer, provider, productId, total, countPerOrder, shipDatePerOrder);
+	}
+
+	BaseOrder baseOrder = new BaseOrder(c1, p, 82814);
+	SingleOrder singleOrder1 = new SingleOrder(c1, p, 82814, 5, "2013-08-14");
+	SingleOrder singleOrder2 = new SingleOrder(c1, p, 82815, 2, "2013-08-14");
+	MultiOrder multiOrder = new MultiOrder(c1, p, 82815, 2, {3, 3}, {"2013-08-31", "2013-09-02"});
+
+There are several ways to add these data to the datastore:
+
+1. Open the *TestData* tab of TestMP Web Console, and click the *New* button.
+
+	Input the data represented as JSON into the *Properties* field;
+
+	Input tags you want to attach to the data into the *Tags* field. E.g. SINGLE, MULTI, COUNT > 3, etc
+
+2. Use the *bin/load.sh* (*bin/load.bat* for Windows) script.
+
+	Put all the data into a file of JSON format, like below:
+
+		[
+			{"tags":["BASE"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82814}},
+			{"tags":["SINGLE", "SNIPET"],"data":{"count":5, "shipDate":"2013-08-14"}},
+			{"tags":["SINGLE"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82815, "count":2, "shipDate":"2013-08-14"}},
+			{"tags":["MULTI"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82815, "total":2, "countPerOrder":[3, 3], "shipDatePerOrder":["2013-08-31", "2013-09-02"]}}
+		]
+
+	Then run the command under TESTMP_HOME:
+
+		bin/load.sh testdata the_path_to_your_data_file
+
+3. Wrap the data as a *DataInfo<T\>*, and call the client API *addData*.
+
+		DataInfo<BaseOrder> d1 = new DataInfo<BaseOrder>();
+		d1.setTags(Arrays.asList(new String[]{"BASE"}));
+		d1.setData(baseOrder);
+
+		DataInfo<SingleOrder> d2 = new DataInfo<SingleOrder();
+		d3.setTags(Arrays.asList(new String[]{"SINGLE", "SNIPET"}));
+		d3.setData(singleOrder1);
+
+		DataInfo<SingleOrder> d3 = new DataInfo<SingleOrder();
+		d3.setTags(Arrays.asList(new String[]{"SINGLE"}));
+		d3.setData(singleOrder2);
+
+		DataInfo<MultiOrder> d4 = new DataInfo<MultiOrder>();
+		d5.setTags(Arrays.asList(new String[]{"MULTI"}));
+		d5.setData(multiOrder);
+
+		List<Integer> IDs = client.addData(d1, d2, d3, d4);
+
+	This method is not intended to be used directly by the user, but can be leveraged in your scripts.
+
+To find / get all the MULTI orders, you call the client APIs *findDataByTag* / *getDataByTag*:
+
+	List<Integer> dataIdList = client.findDataByTag("MULTI");
+
+	/* or */
+
+	List<DataInfo<MultiOrder>> dataInfoList = client.getDataByTag(MultiOrder.class, "MULTI");
+	for (DataInfo<MultiOrder> dataInfo : dataInfoList) {
+		MultiOrder order = dataInfo.getData();
+		System.out.println("MultiOrder: " + order);
+	}
+
+To find / get all the SINGLE order of which the product ID is 82815, you call the client APIs *findData* / *getData*:
+
+	HashMap<String, Object> props = new HashMap<String, Object>();
+	props.put("provider", p);
+
+	List<Integer> dataIdList = client.findData(new String[]{"SINGLE"}, props);
+
+	/* or */
+
+	List<DataInfo<SingleOrder>> dataInfoList = client.getData(SingleOrder.class, new String[]{"SINGLE"}, props);
+	for (DataInfo<SingleOrder> dataInfo : dataInfoList) {
+		SingleOrder order = dataInfo.getData();
+		System.out.println("SingleOrder: " + order);
+	}
+
+And you can get any data generally as a Map:
+
+	HashMap<String, Object> props = new HashMap<String, Object>();
+	props.put("provider", p);
+
+	List<Integer> dataIdList = client.findDataByProperty(props);
+
+	/* or */
+
+	List<DataInfo<Map>> dataInfoList = client.getDataByProperty(Map.class, props);
+	for (DataInfo<Map> dataInfo : dataInfoList) {
+		Map order = dataInfo.getData();
+		System.out.println("Order from p: " + order);
+	}
+
+It's also possible to get data by ID or a range of IDs by calling client APIs *getDataById* and *getDataByRange*.
+
+**To reduce the duplicate input of data properties, TestMP allows the user to merge two or more data (snipets) together:**
+
+	Integer baseOrderId = client.findDataByTag("BASE").get(0);
+	Integer singleOrderSnipetId = client.findDataByTag("SINGLE", "SNIPET").get(0);
+	DataInfo<SingleOrder> dataInfo = client.mergeData(SingleOrder.class, baseOrderId, singleOrderSnipetId);
+	SingleOrder order = dataInfo.getData();
+
+The update and deletion of test data can be done on the Web Console by double clicking the record or clicking the *remove* icon at the end of the record. Or you can use the tag and property replated client APIs, referring to the api doc.
 
 ## Task-driven Test Environment Management  ##
 
