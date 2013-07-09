@@ -235,7 +235,7 @@ For example, we have some data of types like below, which are expected to be use
 
 There are several ways to add these data to the datastore:
 
-1. Open the *TestData* tab of TestMP Web Console, and click the *New* button.
+1. Open the "Test Data" tab of TestMP Web Console, and click the *New* button.
 
 	Input the data represented as JSON into the *Properties* field;
 
@@ -247,7 +247,7 @@ There are several ways to add these data to the datastore:
 
 		[
 			{"tags":["BASE"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82814}},
-			{"tags":["SINGLE", "SNIPET"],"data":{"count":5, "shipDate":"2013-08-14"}},
+			{"tags":["SINGLE", "SNIPPET"],"data":{"count":5, "shipDate":"2013-08-14"}},
 			{"tags":["SINGLE"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82815, "count":2, "shipDate":"2013-08-14"}},
 			{"tags":["MULTI"],"data":{"customer":{/*obj c1*/}, "provider":{/* obj p */}, "productId":82815, "total":2, "countPerOrder":[3, 3], "shipDatePerOrder":["2013-08-31", "2013-09-02"]}}
 		]
@@ -263,7 +263,7 @@ There are several ways to add these data to the datastore:
 		d1.setData(baseOrder);
 
 		DataInfo<SingleOrder> d2 = new DataInfo<SingleOrder();
-		d3.setTags(Arrays.asList(new String[]{"SINGLE", "SNIPET"}));
+		d3.setTags(Arrays.asList(new String[]{"SINGLE", "SNIPPET"}));
 		d3.setData(singleOrder1);
 
 		DataInfo<SingleOrder> d3 = new DataInfo<SingleOrder();
@@ -322,15 +322,64 @@ And you can get any data generally as a Map:
 
 It's also possible to get data by ID or a range of IDs by calling client APIs *getDataById* and *getDataByRange*.
 
-**To reduce the duplicate input of data properties, TestMP allows the user to merge two or more data (snipets) together:**
+**To reduce the duplicate input of data properties, TestMP allows the user to merge two or more data (snippets) together:**
 
 	Integer baseOrderId = client.findDataByTag("BASE").get(0);
-	Integer singleOrderSnipetId = client.findDataByTag("SINGLE", "SNIPET").get(0);
-	DataInfo<SingleOrder> dataInfo = client.mergeData(SingleOrder.class, baseOrderId, singleOrderSnipetId);
+	Integer singleOrderSnippetId = client.findDataByTag("SINGLE", "SNIPPET").get(0);
+	DataInfo<SingleOrder> dataInfo = client.mergeData(SingleOrder.class, baseOrderId, singleOrderSnippetId);
 	SingleOrder order = dataInfo.getData();
 
 The update and deletion of test data can be done on the Web Console by double clicking the record or clicking the *remove* icon at the end of the record. Or you can use the tag and property replated client APIs, referring to the api doc.
 
 ## Task-driven Test Environment Management  ##
 
-TBD
+Typically a test process involves several test environments at different stages including component (unit), integration, and production, and an environment builds on one or more real or virtual hosts.
+
+You may have built or are going to create scripts to solve various environment-replated problems, like deploying packages, checking the build validity, configuring the environment, launching the automation, etc.
+
+TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment & process managment.
+
+At first, there are some related terms:
+
+> Environment - a concept about the hardware / software context in which the test is performed.
+> 
+> Host - one or more devices that comprise the hardware part on which a test environment is built.
+> 
+> Task - a concept about a group of executions on selected hosts belonging to an environment, usually with a certain purpose.
+> 
+> Execution - a concept about a script / command running against a specified host, which will generate some results on the end.
+
+![Wiki-TestEnv.png](./img/Wiki-TestEnv.png)
+
+Adding an environment to TestMP is intuitive: open the "Test Environment" tab and click the *New* button. Then input the environment's name and optionally give a url of the *reference page* on which the environment detail can be found.
+
+Then you can define tasks for this environment: click the *Tasks* icon of this environment record; on the pop-up window, click the *New* button; Then input the task name, and optionally set the schedule if you hope it run repeatly and expectedly. The [schedule syntax](./schedule-syntax.txt) is unix-like but a little different.
+
+	By default, the schedule will take effect at most in 600 seconds. You can configure it in the conf/testmp.properties.
+
+A task can have multiple executions at the same time: click the *Executions* icon of the task record to open the window. Each execution has the following fields:
+> on/off - enable or disable such execution.
+> 
+> Host - the host on which the execution is expected to run.
+> 
+> Working Directory - the current directory for the execution.
+> 
+> Command - the actual command to be executed.
+> 
+> RetCode - the returned code of the execution's last run.
+>
+> Trace - the output of the last execution, which can be refreshed if the last run is still in progress.
+
+When adding a new execution record, by default, its *Host* will be set to "localhost", the host on which TestMP is running. If you want it to be another, you'll need to firstly register that host.
+
+Click the *Hosts* button on the "Test Environment" tab. For each added new host, the hostname, username, and password are required to setup the SSH connection.
+
+	For connection failures, you may want to make sure the host administrator has enabled the "password" authentication method for its SSH configuration.
+
+Besides scheduling the tasks, you can launch them at any time by clicking the *Run* button of the task record.
+
+By clicking the *Report* button on the "Test Environment" tab, you will get a summary report about the status of all the test environments shown in list, just like below:
+
+![Wiki-EnvReport.png](./img/Wiki-EnvReport.png)
+
+and you can send it as email to the people who are interested in this.

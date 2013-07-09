@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>TestMP - The Test Management Platform for Automation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TestMP wiki.">
+<meta name="description" content="TestMP is a test platform facilitating the management of automation test cases, data, environments in an automated way.">
 <meta name="author" content="Zhaowei Ding">
 
 <link href="./css/bootstrap.css" rel="stylesheet">
@@ -61,7 +61,7 @@ body {
             <li><a href="https://sourceforge.net/projects/testmp/files/">Download</a></li>
             <li><a href="https://github.com/dingzhaowei/TestMP">Source Code</a></li>
             <li class="active"><a href="./TestMP-Wiki.html">Wiki</a></li>
-            <li><a href="#">Releases</a></li>
+            <li><a href="#">Blog</a></li>
             <li><a href="https://github.com/dingzhaowei/TestMP/issues">Issues</a></li>
           </ul>
         </div>
@@ -79,6 +79,12 @@ body {
           <div class="span6">
             <a href="./TestMP.html" title="TestMP -  The Test Management Platform for Automation"><img
               src="./img/testmp-weblogo.png" width="252" height="96" alt="TestMP Logo"></a>
+          </div>
+          <div class="span6">
+            <br /> <br /> <br />
+            <p>
+              <strong>TestMP</strong> is a test management platform for <em>automation</em>.
+            </p>
           </div>
         </div>
       </div>
@@ -297,7 +303,7 @@ MultiOrder multiOrder = new MultiOrder(c1, p, 82815, 2, {3, 3}, {&quot;2013-08-3
 <p>There are several ways to add these data to the datastore:</p>
 <ol>
 <li>
-<p>Open the <em>TestData</em> tab of TestMP Web Console, and click the <em>New</em> button.</p>
+<p>Open the &quot;Test Data&quot; tab of TestMP Web Console, and click the <em>New</em> button.</p>
 <p>Input the data represented as JSON into the <em>Properties</em> field;</p>
 <p>Input tags you want to attach to the data into the <em>Tags</em> field. E.g. SINGLE, MULTI, COUNT &gt; 3, etc</p>
 </li>
@@ -306,7 +312,7 @@ MultiOrder multiOrder = new MultiOrder(c1, p, 82815, 2, {3, 3}, {&quot;2013-08-3
 <p>Put all the data into a file of JSON format, like below:</p>
 <pre><code>[
     {&quot;tags&quot;:[&quot;BASE&quot;],&quot;data&quot;:{&quot;customer&quot;:{/*obj c1*/}, &quot;provider&quot;:{/* obj p */}, &quot;productId&quot;:82814}},
-    {&quot;tags&quot;:[&quot;SINGLE&quot;, &quot;SNIPET&quot;],&quot;data&quot;:{&quot;count&quot;:5, &quot;shipDate&quot;:&quot;2013-08-14&quot;}},
+    {&quot;tags&quot;:[&quot;SINGLE&quot;, &quot;SNIPPET&quot;],&quot;data&quot;:{&quot;count&quot;:5, &quot;shipDate&quot;:&quot;2013-08-14&quot;}},
     {&quot;tags&quot;:[&quot;SINGLE&quot;],&quot;data&quot;:{&quot;customer&quot;:{/*obj c1*/}, &quot;provider&quot;:{/* obj p */}, &quot;productId&quot;:82815, &quot;count&quot;:2, &quot;shipDate&quot;:&quot;2013-08-14&quot;}},
     {&quot;tags&quot;:[&quot;MULTI&quot;],&quot;data&quot;:{&quot;customer&quot;:{/*obj c1*/}, &quot;provider&quot;:{/* obj p */}, &quot;productId&quot;:82815, &quot;total&quot;:2, &quot;countPerOrder&quot;:[3, 3], &quot;shipDatePerOrder&quot;:[&quot;2013-08-31&quot;, &quot;2013-09-02&quot;]}}
 ]
@@ -324,7 +330,7 @@ d1.setTags(Arrays.asList(new String[]{&quot;BASE&quot;}));
 d1.setData(baseOrder);
 
 DataInfo&lt;SingleOrder&gt; d2 = new DataInfo&lt;SingleOrder();
-d3.setTags(Arrays.asList(new String[]{&quot;SINGLE&quot;, &quot;SNIPET&quot;}));
+d3.setTags(Arrays.asList(new String[]{&quot;SINGLE&quot;, &quot;SNIPPET&quot;}));
 d3.setData(singleOrder1);
 
 DataInfo&lt;SingleOrder&gt; d3 = new DataInfo&lt;SingleOrder();
@@ -384,16 +390,50 @@ for (DataInfo&lt;Map&gt; dataInfo : dataInfoList) {
 </code></pre>
 
 <p>It's also possible to get data by ID or a range of IDs by calling client APIs <em>getDataById</em> and <em>getDataByRange</em>.</p>
-<p><strong>To reduce the duplicate input of data properties, TestMP allows the user to merge two or more data (snipets) together:</strong></p>
+<p><strong>To reduce the duplicate input of data properties, TestMP allows the user to merge two or more data (snippets) together:</strong></p>
 <pre><code>Integer baseOrderId = client.findDataByTag(&quot;BASE&quot;).get(0);
-Integer singleOrderSnipetId = client.findDataByTag(&quot;SINGLE&quot;, &quot;SNIPET&quot;).get(0);
-DataInfo&lt;SingleOrder&gt; dataInfo = client.mergeData(SingleOrder.class, baseOrderId, singleOrderSnipetId);
+Integer singleOrderSnippetId = client.findDataByTag(&quot;SINGLE&quot;, &quot;SNIPPET&quot;).get(0);
+DataInfo&lt;SingleOrder&gt; dataInfo = client.mergeData(SingleOrder.class, baseOrderId, singleOrderSnippetId);
 SingleOrder order = dataInfo.getData();
 </code></pre>
 
 <p>The update and deletion of test data can be done on the Web Console by double clicking the record or clicking the <em>remove</em> icon at the end of the record. Or you can use the tag and property replated client APIs, referring to the api doc.</p>
 <h2>Task-driven Test Environment Management</h2>
-<p>TBD</p>
+<p>Typically a test process involves several test environments at different stages including component (unit), integration, and production, and an environment builds on one or more real or virtual hosts.</p>
+<p>You may have built or are going to create scripts to solve various environment-replated problems, like deploying packages, checking the build validity, configuring the environment, launching the automation, etc.</p>
+<p>TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment &amp; process managment.</p>
+<p>At first, there are some related terms:</p>
+<blockquote>
+<p>Environment - a concept about the hardware / software context in which the test is performed.</p>
+<p>Host - one or more devices that comprise the hardware part on which a test environment is built.</p>
+<p>Task - a concept about a group of executions on selected hosts belonging to an environment, usually with a certain purpose.</p>
+<p>Execution - a concept about a script / command running against a specified host, which will generate some results on the end.</p>
+</blockquote>
+<p><img src="./img/Wiki-TestEnv.png" alt="Wiki-TestEnv.png" /></p>
+<p>Adding an environment to TestMP is intuitive: open the &quot;Test Environment&quot; tab and click the <em>New</em> button. Then input the environment's name and optionally give a url of the <em>reference page</em> on which the environment detail can be found.</p>
+<p>Then you can define tasks for this environment: click the <em>Tasks</em> icon of this environment record; on the pop-up window, click the <em>New</em> button; Then input the task name, and optionally set the schedule if you hope it run repeatly and expectedly. The <a href="./schedule-syntax.txt">schedule syntax</a> is unix-like but a little different.</p>
+<pre><code>By default, the schedule will take effect at most in 600 seconds. You can configure it in the conf/testmp.properties.
+</code></pre>
+
+<p>A task can have multiple executions at the same time: click the <em>Executions</em> icon of the task record to open the window. Each execution has the following fields:</p>
+<blockquote>
+<p>on/off - enable or disable such execution.</p>
+<p>Host - the host on which the execution is expected to run.</p>
+<p>Working Directory - the current directory for the execution.</p>
+<p>Command - the actual command to be executed.</p>
+<p>RetCode - the returned code of the execution's last run.</p>
+<p>Trace - the output of the last execution, which can be refreshed if the last run is still in progress.</p>
+</blockquote>
+<p>When adding a new execution record, by default, its <em>Host</em> will be set to &quot;localhost&quot;, the host on which TestMP is running. If you want it to be another, you'll need to firstly register that host.</p>
+<p>Click the <em>Hosts</em> button on the &quot;Test Environment&quot; tab. For each added new host, the hostname, username, and password are required to setup the SSH connection.</p>
+<pre><code>For connection failures, you may want to make sure the host administrator has enabled the &quot;password&quot; authentication method for its SSH configuration.
+</code></pre>
+
+<p>Besides scheduling the tasks, you can launch them at any time by clicking the <em>Run</em> button of the task record.</p>
+<p>By clicking the <em>Report</em> button on the &quot;Test Environment&quot; tab, you will get a summary report about the status of all the test environments shown in list, just like below:</p>
+<p><img src="./img/Wiki-EnvReport.png" alt="Wiki-EnvReport.png" /></p>
+<p>and you can send it as email to the people who are interested in this.</p>
+
 <!-- End: Converted from Markdown -->
       </div>
     </div>
