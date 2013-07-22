@@ -1,0 +1,8 @@
+
+2013-07-22 release notes of v1.0.1:
+
+1. Added i18n support and resource bundles
+2. Added Chinese as optional UI language
+3. Fixed encoding issue of report generation
+4. Refactored TestEnv, TaskRunner and TaskSchduler services
+ 
