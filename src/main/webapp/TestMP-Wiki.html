@@ -97,10 +97,10 @@ body {
 <h1>Setup</h1>
 <p>Once downloaded, unpack the compressed folder to see the structure of (the compiled) TestMP. You'll see a structure like this:</p>
 <pre><code>testmp/
-|-- bin/      # contains the scripts for startup &amp; maintenace.
+|-- bin/      # contains the scripts for startup &amp; maintenance.
 |-- conf/     # contains the configuration file.
 |-- data/     # contains the database files.
-|-- lib/      # contains the TestMP client libraries. 
+|-- lib/      # contains the TestMP client libraries.
 |-- log/      # contains the generated log files.
 |-- webapp/   # contains the wars of WebConsole and DataStore.
 |-- README.md
@@ -113,14 +113,14 @@ body {
 <pre><code># The locale setting of webconsole and reports
 locale=en_US
 
-# The launching url of the DataStore each for test case, data, and environment.
+# The launching url of the datastore each for test case, data, and environment.
 testCaseStoreUrl=http://localhost:10081/DataStore.do
 testDataStoreUrl=http://localhost:10082/DataStore.do
 testEnvStoreUrl=http://localhost:10083/DataStore.do
 
-# The number of threads for concurrently running task.
+# The number of threads for running tasks.
 executionThreadNum=10
-# The timeout for task execution. 0 means no timeout.
+# The timeout of task execution. 0 means no timeout.
 executionTimeout=0
 
 # The time gap (in seconds) between two refreshings of the task schedule.
@@ -145,7 +145,7 @@ smtpSettingSTARTTLS=true
 </code></pre>
 
 <p>Currently TestMP supports UI languages of US English (the default) and Chinese. Change the <em>locale</em> to <strong>zh_CN</strong> if you want to change the language to Chinese.</p>
-<p>While most of the other settings can be left to their default values, <em>testCaseStoreUrl</em>, <em>testDataUrl</em>, <em>testEnvUrl</em> may need to be modified if the default listening ports have been occupied or they are launched remotely.</p>
+<p>While most of the other settings can be left to their default values, <em>testCaseStoreUrl</em>, <em>testDataStoreUrl</em>, <em>testEnvStoreUrl</em> may need to be modified if the default listening ports have been occupied or they are launched remotely.</p>
 <p>It's also possible to make these urls the same to share only one datastore. But in practice it will not be efficient and may cause confusion.</p>
 <p>The settings of <em>*ReportRecipients</em>, <em>*ReportSubject</em>, and <em>smtpSetting*</em> are for your convenience. You can always input/modify them manually on the TestMP Web Console.</p>
 <h1>Launch the TestMP</h1>
@@ -176,7 +176,7 @@ launching TestMP web console on 10080
 </code></pre>
 
 <p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
-<p>Open your favorite browser, enter &quot;http://yourhost:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
+<p>Open your favorite browser, enter &quot;http://the<em>name</em>or<em>ip<em>of</em>your</em>host:10080&quot; in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
 <h1>Automation on TestMP</h1>
 <h2>Bind Automation Test Cases to TestMP</h2>
 <p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. </p>
