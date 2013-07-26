@@ -182,13 +182,20 @@ launching TestMP web console on 10080
 <p>By binding automation test cases to TestMP, the test case document can be instantly updated and shown on the TestMP Web Console each time the test cases run, besides several measures as follows. </p>
 <p><strong>Test Measures</strong>:</p>
 <blockquote>
-<p><em>robustness</em> - a score between [0.0 - 1.0] that reflects the quality robustness of the function covered by this test case.</p>
+<p><em>robustness</em> - a score between [0.0 - 1.0] that measures the function quality covered by the test case.</p>
 <p><em>robustness trend</em> - the trend of the robustness change: always good, always bad, upgrading, or degrading.</p>
 <p><em>average test time</em> - the average time consumed by running a test case, which is evaluated from its run history.</p>
 <p><em>test time volatility</em> - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.</p>
 </blockquote>
 <p>And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.</p>
-<p>To bind automation test cases to TestMP, you need to put <em>lib/*.jar</em> on the class path of your automation test.</p>
+<p>To bind automation test cases to TestMP, you need to put <em>lib/*.jar</em> on the class path of your automation test. If you use Maven to build your automation, an alternate way is to add the dependency below:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.testmp&lt;/groupId&gt;
+    &lt;artifactId&gt;testsync&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
 <p>TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from <em>TestSyncForJUnit</em>; For TestNG test, 
 no additional step is needed.</p>
 <p>The two code snippets below show examples about how to add document to test case with Annotation <em>@TestDoc</em>:</p>
@@ -268,7 +275,15 @@ no additional step is needed.</p>
 <h2>Integrate Automation with Test Data Service</h2>
 <p>TestMP provides an object-oriented test data service. The test data is stored at the server side instead of hard-coded in the automation code or data files of XML or the other formats. Each data can have one or more tags to describe itself, which is useful when you want some data having certain tags.</p>
 <p>You will use a group of APIs to access the datastore to find / get the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.</p>
-<p>To access the datastore, you need to put the <em>lib/datastore-client-*.jar</em> and its dependencies  on the class path of your automation test. Then initialize a <em>DataStoreClient</em> instance as below:</p>
+<p>To access the datastore, you need to put the <em>lib/datastore-client-*.jar</em> and its dependencies  on the class path of your automation test. If you use Maven to build your automation, an alternate way is to add the dependency below:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.testmp&lt;/groupId&gt;
+    &lt;artifactId&gt;datastore-client&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Then initialize a <em>DataStoreClient</em> instance as below:</p>
 <pre><code>DataStoreClient client = new DataStoreClient(testDataStoreUrl);
 </code></pre>
 

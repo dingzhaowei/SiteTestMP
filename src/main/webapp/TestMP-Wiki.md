@@ -92,7 +92,7 @@ By binding automation test cases to TestMP, the test case document can be instan
 
 **Test Measures**:
 >
-> *robustness* - a score between [0.0 - 1.0] that reflects the quality robustness of the function covered by this test case.
+> *robustness* - a score between [0.0 - 1.0] that measures the function quality covered by the test case.
 > 
 > *robustness trend* - the trend of the robustness change: always good, always bad, upgrading, or degrading.
 > 
@@ -102,7 +102,13 @@ By binding automation test cases to TestMP, the test case document can be instan
 
 And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.
 
-To bind automation test cases to TestMP, you need to put *lib/\*.jar* on the class path of your automation test.
+To bind automation test cases to TestMP, you need to put *lib/\*.jar* on the class path of your automation test. If you use Maven to build your automation, an alternate way is to add the dependency below:
+
+	<dependency>
+		<groupId>org.testmp</groupId>
+		<artifactId>testsync</artifactId>
+		<version>1.0.0</version>
+	</dependency>
 
 TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from *TestSyncForJUnit*; For TestNG test, 
 no additional step is needed.
@@ -200,7 +206,15 @@ TestMP provides an object-oriented test data service. The test data is stored at
 
 You will use a group of APIs to access the datastore to find / get the data in need. And by giving the class type, the returned data can be automatically converted to an object of such type.
 
-To access the datastore, you need to put the *lib/datastore-client-\*.jar* and its dependencies  on the class path of your automation test. Then initialize a *DataStoreClient* instance as below:
+To access the datastore, you need to put the *lib/datastore-client-\*.jar* and its dependencies  on the class path of your automation test. If you use Maven to build your automation, an alternate way is to add the dependency below:
+
+	<dependency>
+		<groupId>org.testmp</groupId>
+		<artifactId>datastore-client</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+
+Then initialize a *DataStoreClient* instance as below:
 
 	DataStoreClient client = new DataStoreClient(testDataStoreUrl);
 
