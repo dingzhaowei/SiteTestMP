@@ -98,7 +98,7 @@ By binding automation test cases to TestMP, the test case document can be instan
 > 
 > *average test time* - the average time consumed by running a test case, which is evaluated from its run history.
 > 
-> *test time volatility* - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.
+> *test time volatility* - a score reflecting the run stability of test case. The higher volatility, the lower stability.
 
 And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.
 
@@ -356,7 +356,7 @@ Typically a test process involves several test environments at different stages 
 
 You may have built or are going to create scripts to solve various environment-replated problems, like deploying packages, checking the build validity, configuring the environment, launching the automation, etc.
 
-TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment & process managment.
+TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment & process management.
 
 At first, there are some related terms:
 

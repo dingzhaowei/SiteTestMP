@@ -185,7 +185,7 @@ launching TestMP web console on 10080
 <p><em>robustness</em> - a score between [0.0 - 1.0] that measures the function quality covered by the test case.</p>
 <p><em>robustness trend</em> - the trend of the robustness change: always good, always bad, upgrading, or degrading.</p>
 <p><em>average test time</em> - the average time consumed by running a test case, which is evaluated from its run history.</p>
-<p><em>test time volatility</em> - a score reflecting the run stabilty of test case. The higher volatility, the lower stability.</p>
+<p><em>test time volatility</em> - a score reflecting the run stability of test case. The higher volatility, the lower stability.</p>
 </blockquote>
 <p>And the test run will also be recorded in the run history (a queue of which the capacity can be configured) for future reference.</p>
 <p>To bind automation test cases to TestMP, you need to put <em>lib/*.jar</em> on the class path of your automation test. If you use Maven to build your automation, an alternate way is to add the dependency below:</p>
@@ -420,7 +420,7 @@ SingleOrder order = dataInfo.getData();
 <h2>Task-driven Test Environment Management</h2>
 <p>Typically a test process involves several test environments at different stages including component (unit), integration, and production, and an environment builds on one or more real or virtual hosts.</p>
 <p>You may have built or are going to create scripts to solve various environment-replated problems, like deploying packages, checking the build validity, configuring the environment, launching the automation, etc.</p>
-<p>TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment &amp; process managment.</p>
+<p>TestMP help you organize, schedule, visualize, and monitor these local / remote scripts, to facilitate the test environment &amp; process management.</p>
 <p>At first, there are some related terms:</p>
 <blockquote>
 <p>Environment - a concept about the hardware / software context in which the test is performed.</p>
