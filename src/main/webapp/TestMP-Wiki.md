@@ -107,7 +107,7 @@ To bind automation test cases to TestMP, you need to put *lib/\*.jar* on the cla
 	<dependency>
 		<groupId>org.testmp</groupId>
 		<artifactId>testsync</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</dependency>
 
 TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least junit version 4.9 is required, and please make the test case or its parent inherited from *TestSyncForJUnit*; For TestNG test, 
