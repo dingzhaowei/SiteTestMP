@@ -1,3 +1,8 @@
+2013-11-07 release notes of v1.0.2:
+
+1. Fixed the bug of syncing test case robustness trend
+2. Add personalized test case and data filtering
+3. Improved the scalability and fix underlying performance issue 
 
 2013-07-22 release notes of v1.0.1:
 
