@@ -1,0 +1,182 @@
+/* Media
+------------------------------------------------ */
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/*
+------------------------------------------------- */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size:14px;
+  line-height:18px;
+}
+
+/* Typography
+-------------------------------------------------- */
+
+h1{
+  font-size:28px; /* was 36 */
+  line-height:40px;
+}
+
+h2{
+  margin:40px 0 0 0;
+  border-top:5px solid #3D3D3C;
+  padding:20px 0;
+  font-weight:600;
+  font-size:24px;
+}
+
+h3{
+  font-weight:600;
+  font-size:18px;
+}
+
+h4{
+  border-bottom:1px solid #3D3D3C;
+  padding:10px 0;
+  font-weight:600;
+  font-size:18px;
+  margin:0 0 20px 0;
+}
+h4.spaced{
+  margin:30px 0 15px 0;
+}
+
+.small {
+  font-size:12px;
+}
+
+.medium {
+  font-size:14px;
+}
+
+.large {
+  font-size:18px;
+  margin:30px 0;
+  line-height:26px;
+}
+
+.heading h1 {
+  font-weight:600;
+  font-size:24px;
+}
+
+/* Header
+-------------------------------------------------- */
+
+header {
+  
+}
+
+header img {
+  margin: 10px 0;
+}
+
+.btn-download {
+  margin: 20px 0 0 0; 
+}
+
+.btn-learn {
+  margin: 20px 0 0 20px;  
+}
+
+/* Menu
+-------------------------------------------------- */
+.menu {
+  margin-bottom:20px;
+}
+
+/* Content
+-------------------------------------------------- */
+
+.blocks div{
+  margin-bottom: 5px;
+}
+
+.blocks img{
+  border:1px solid lightgray;
+  margin-bottom: 15px;
+}
+
+/* Navbar
+-------------------------------------------------- */
+.navbar-fixed-top .navbar-brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 20px;
+  float: right;
+}
+.navbar-fixed-top .navbar-brand:hover {
+  text-decoration: none;
+}
+
+/* Customize the canrousel
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-top: 5px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px !important;
+  text-align: center;
+  background-color: #555;
+}
+
+/* Open Sans font definition
+-------------------------------------------------- */
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}

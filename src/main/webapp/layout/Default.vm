@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  #parse( 'header.vm' )
+  <body>
+    #parse( 'navbar.vm' )
+    <div class="container">
+      ## #parse( 'logo.vm' )
+      $screen_content
+      #parse( 'footer.vm' )
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

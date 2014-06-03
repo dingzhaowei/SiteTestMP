@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Introduction</h2>
+  </div>
+</div>
+
+<div class="row">
+  <p class="col-sm-12">
+    <strong>TestMP</strong> is a test management platform. It integrates the management of test cases
+    (including both code and doc), test data, and environments together, and driving the test process
+    automatically.
+  </p>
+  <p class="col-sm-12">
+    It is also an automation tool, which makes the building and maintaining automation tests much more
+    convenient than before, by the means of:
+  </p>
+  <div class="col-sm-12">
+    <ol>
+      <li>Synchronizing the updates of test document and metrics dynamically on each run.</li>
+      <li>Clean and meaningful Test Metrics and Environment Status reports.</li>
+      <li>Centralized test data storage; Data inheritance hierarchies; Automatic type conversion.</li>
+      <li>Hudson-like but more environment-centric driven of continuous integration process.</li>
+    </ol>
+  </div>
+  <p class="col-sm-12">
+    This is still an ongoing project, and there are so many things that should and can be done, to make
+    software test more fun and easier in future. If you are interested, please join me, thank you!
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>About TestMP</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4>Author</h4>
+    <p>
+      TestMP is developed by <strong>Zhaowei Ding</strong>, <br />who is a software engineer
+      in Beijing, China.
+    </p>
+    <p>
+      For updates, follow <a href="http://weibo.com/stwalker">@_dingzw</a> on Weibo.
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <h4>Platform</h4>
+    <p>TestMP is developed using Java and tested to be cross-platform.</p>
+    <p>
+       For any issue, open a ticket on the this <a href="https://github.com/dingzhaowei/TestMP/issues">page</a>.
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <h4>License</h4>
+    <p>TestMP is free software.</p>
+    <p>
+       You can redistribute it and/or modify it under the terms of <a href="http://opensource.org/licenses/MIT">the
+       MIT License (MIT)</a>.
+    </p>
+  </div>
+</div>

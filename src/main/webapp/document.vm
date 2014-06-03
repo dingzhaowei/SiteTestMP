@@ -1,0 +1,4 @@
+#set( $current_page = "Document" )
+<div class="row">
+  #include( "document.html" )
+</div>

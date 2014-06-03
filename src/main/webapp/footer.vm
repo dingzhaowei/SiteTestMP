@@ -1,0 +1,6 @@
+#set( $email = 'm&#97;&#x69;&#x6C;&#x74;&#111;:&#100;&#x69;&#x6E;&#103;&#x7A;&#x68;&#97;&#111;&#119;&#x65;&#105;&#x40;&#x6D;&#101;&#x2E;&#x63;&#x6F;&#109;' )
+<hr>
+<footer>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+  <p>&copy; 2013-2014 <a href="$email">Zhaowei Ding</a></p>
+</footer>
