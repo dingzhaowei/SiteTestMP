@@ -1,0 +1,125 @@
+<h1>Add New Test Case</h1>
+
+<p>To add new test case, you can click the 'New' button on the Web Console's 'TestCase' tab, and input necessary information. Then by clicking the '*' column of the new case, you will see the generated code as follows:</p>
+
+<ul>
+<li><p>TestNG</p>
+
+<pre><code>  public class TestSomething {
+
+      @Test(groups = { "group1", "group2" })
+      @TestDoc(
+          project = "project name", 
+          name = "test case name", 
+          description = "test case description")
+      public void testSomething() {
+          // test steps
+      }
+  }
+</code></pre></li>
+<li><p>JUnit</p>
+
+<pre><code>  public class TestSomething extends TestSyncForJUnit {
+
+      @TestDoc(
+          project = "project name", 
+          name = "test case name", 
+          description = "test case description", 
+          groups = { "group1", "group2" })
+      @Test
+      public void testSomething() throws Exception {
+          // test steps
+      }
+  }
+</code></pre></li>
+</ul>
+
+
+<p>The values of <em>@TestDoc</em> depend on your provided when creating the case. Move the code to your automation project, and implement the test steps.</p>
+
+<p>TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at least JUnit 4.9 is required. To bind automation test cases to TestMP, you need to put <em>lib/*.jar</em> on the class path of your automation project. If you use Maven to build your automation, an alternate way is to add the dependency below:</p>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.testmp&lt;/groupId&gt;
+    &lt;artifactId&gt;testsync&lt;/artifactId&gt;
+    &lt;version&gt;1.0.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p><em>Note: If you directly implement the test case in your automation project, and run it following the way below, it will also be automatically added to the Web Console.</em></p>
+
+<h1>Run Test Case</h1>
+
+<p>Any updates of <em>@TestDoc</em> and the test result can be automatically synchronized to the Web Console. The only necessary step is passing the JVM arguments below when running test case:</p>
+
+<pre><code>-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://localhost:10081/DataStore.do
+</code></pre>
+
+<ul>
+<li><em>testCaseStoreUrl</em> - specify the datastore of test case.</li>
+<li><em>updateTestDocument</em> - whether to automatically update the test document.</li>
+<li><em>updateTestMeasures</em> - whether to automatically update the test measures.</li>
+<li><em>runHistoryCapacity</em> - the maxium number of test run records that are kept.</li>
+</ul>
+
+
+<p><em>testCaseStoreUrl</em> defaults to <strong>http://localhost:10081/DataStore.do</strong>; You may need to replace the host name with the actual remote accessing address. <em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong> to avoid unintended updates, like when debuging the test case. <em>runHistoryCapacity</em> defaults to <strong>30</strong>.</p>
+
+<p>After the first run from the automation code, you can also launch the test case directly from the Web Console, by clicking the '*' column of each record, or by clicking the 'Run' button on the Web Console's 'TestCase' tab.</p>
+
+<p>Such convenience needs some pre-configurations - the automation service. It is a server that accepts query parameters <em>automation</em> and <em>action</em>.</p>
+
+<ul>
+<li><p><em>action</em> - there're 3 actions: 'query', 'launch', and 'cancel'</p></li>
+<li><p><em>automation</em> - a list of the full name of test cases separated by ',' to act on.</p></li>
+</ul>
+
+
+<p>Each response should return a string composed of '0' and '1', corresponding to the sequence specified in the query parameter <em>automation</em>. '1' means the test case is running, '0' means the reverse.</p>
+
+<p>You can implement your own automation service, but TestMP provides one which you can learn the usage by running the command:</p>
+
+<pre><code>python3 $TESTMP_HOME/bin/automation_service.py -h
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>python3 $TESTMP_HOME/bin/automation_service.py -c "command"
+</code></pre>
+
+<p>For TestNG, the command could be:</p>
+
+<pre><code>java org.testng.TestNG -methods {a}
+</code></pre>
+
+<p>For JUnit, the command could be:</p>
+
+<pre><code>java org.testmp.sync.junit.RunTest -methods {a} /* To be done */
+</code></pre>
+
+<p><em>Note:</em></p>
+
+<ol>
+<li><p><em>make sure the testng or testsync library and your automation project are in the class path.</em></p></li>
+<li><p><em>{a} is a parameter holder to be populated by the automation service - the full name of test case (package.class.method)</em></p></li>
+</ol>
+
+
+<p>Finally, remember to set the automation service url in <em>conf/testmp.properties</em>, or in the Web Console's 'Settings' window.</p>
+
+<h1>Evaluate Test Case</h1>
+
+<p>Open the Web Console, and select the 'Test Case' tab. Clicking the 'Filter' button to filter out the test cases that will be included in the test metrics report. Then clicking the 'Report' button will generate the report waiting for signoff, and there are metrics for each project:</p>
+
+<ul>
+<li><em>Total Tests</em> - the number of test cases from this project.</li>
+<li><em>Groups (tags)</em> - the groups involved in this test.</li>
+<li><em>Robustness</em> - the distribution of quality robustness evaluated from the run history.</li>
+<li><em>Effectiveness</em> - the number of real bugs and the number of false alarmings.</li>
+<li><em>Efficiency</em> - the test run time and its volatility. <br><br></li>
+</ul>
+
+
+<p><img src="./img/Doc-MetricsReport.png" alt="Wiki-MetricsReport.png" /></p>
+
+<p>Mark each project as "Accept" or "Refuse" based on the metrics, and click the 'Signoff' button to get the final report. Now it's ready to send the report to the stakeholders. You can set the default settings of sending report in <em>conf/testmp.properties</em>, or on the Web Console's 'Settings' window.</p>

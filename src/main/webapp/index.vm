@@ -1,3 +1,4 @@
 #set( $current_page = "Home" )
 #parse( 'carousel.vm' )
 #parse( 'intro.vm' )
+#parse( 'about.vm' )

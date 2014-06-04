@@ -1,4 +1,22 @@
 #set( $current_page = "Document" )
-<div class="row">
-  #include( "document.html" )
+
+<div class="row" data-spy="scroll" data-target="#sidebar">
+  <div class="col-sm-11">
+    <hr id="setup"></hr>
+    #include( "doc_setup.html" )
+    <hr id="testcase"></hr>
+    #include( "doc_testcase.html" )
+    <hr id="testdata"></hr>
+    #include( "doc_testdata.html" )
+    <hr id="testenv"></hr>
+    #include( "doc_testenv.html" )
+  </div>
+  <div class="col-sm-1">
+    <ul id="sidebar" class="nav nav-stacked affix">
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#testcase">Test Case</a></li>
+      <li><a href="#testdata">Test Data</a></li>
+      <li><a href="#testenv">Environment</a></li>
+    </ul>
+  </div>
 </div>

@@ -23,41 +23,8 @@
     </ol>
   </div>
   <p class="col-sm-12">
-    This is still an ongoing project, and there are so many things that should and can be done, to make
-    software test more fun and easier in future. If you are interested, please join me, thank you!
+    This is still an ongoing project, and the beta release
+    <a href="http://sourceforge.net/projects/testmp/files/latest/download?source=files">v1.0.3</a>
+    has been available (<small><a href="release_notes.txt">release notes</a></small>). Feel free to download and try it!
   </p>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <h2>About TestMP</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-4">
-    <h4>Author</h4>
-    <p>
-      TestMP is developed by <strong>Zhaowei Ding</strong>, <br />who is a software engineer
-      in Beijing, China.
-    </p>
-    <p>
-      For updates, follow <a href="http://weibo.com/stwalker">@_dingzw</a> on Weibo.
-    </p>
-  </div>
-  <div class="col-sm-4">
-    <h4>Platform</h4>
-    <p>TestMP is developed using Java and tested to be cross-platform.</p>
-    <p>
-       For any issue, open a ticket on the this <a href="https://github.com/dingzhaowei/TestMP/issues">page</a>.
-    </p>
-  </div>
-  <div class="col-sm-4">
-    <h4>License</h4>
-    <p>TestMP is free software.</p>
-    <p>
-       You can redistribute it and/or modify it under the terms of <a href="http://opensource.org/licenses/MIT">the
-       MIT License (MIT)</a>.
-    </p>
-  </div>
 </div>

@@ -1,0 +1,98 @@
+<h1>Setup</h1>
+
+<p>Once downloaded, unpack the compressed folder to see the structure of (the compiled) TestMP. You'll see a structure like this:</p>
+
+<pre><code>testmp/
+|-- bin/      # contains the scripts for startup &amp; maintenance.
+|-- conf/     # contains the configuration file.
+|-- data/     # contains the database files.
+|-- lib/      # contains the TestMP client libraries.
+|-- log/      # contains the generated log files.
+|-- webapp/   # contains the wars of WebConsole and DataStore.
+|-- README.md
+</code></pre>
+
+<p>It's not forced but recommended that you set the TESTMP_HOME environment variable, of which the value is the path to the <em>testmp/</em>, if you hope to launch TestMP outside such directory.</p>
+
+<p>Before running TestMP, you also need to have Java Runtime Environment (Version 6 or the above) installed, and make sure the JAVA_HOME is set correctly.</p>
+
+<h1>Configuration</h1>
+
+<p>You will find most TestMP configurations in the <em>conf/testmp.properties</em>:</p>
+
+<pre><code># The locale setting of webconsole and reports
+locale=en_US
+
+# The launching url of the datastore each for test case, data, and environment.
+testCaseStoreUrl=http://localhost:10081/DataStore.do
+testDataStoreUrl=http://localhost:10082/DataStore.do
+testEnvStoreUrl=http://localhost:10083/DataStore.do
+
+# The default automation service address
+automationServiceUrl=http://localhost:8888
+
+# The number of threads for running tasks.
+executionThreadNum=10
+# The timeout of task execution. 0 means no timeout.
+executionTimeout=0
+
+# The time gap (in seconds) between two refreshings of the task schedule.
+scheduleRefreshingTimeGap=1800
+# The maximum latency (in seconds) to trigger a scheduled task, or ignore it.
+taskTriggerMaxLatency=600
+
+# The default recipient list and subject of the test metrics report. 
+testMetricsReportRecipients=
+testMetricsReportSubject=
+
+# The default recipient list and subject of the test env status report.
+envStatusReportRecipients=
+envStatusReportSubject=
+
+# The default SMTP settings to sending the report.
+smtpSettingHost=
+smtpSettingPort=25
+smtpSettingUser=
+smtpSettingPass=
+smtpSettingSTARTTLS=true
+</code></pre>
+
+<p>Currently TestMP supports UI languages of US English (the default) and Chinese. Change the <em>locale</em> to <strong>zh_CN</strong> if you want to change the language to Chinese.</p>
+
+<p>While most of the other settings can be left to their default values, <em>testCaseStoreUrl</em>, <em>testDataStoreUrl</em>, <em>testEnvStoreUrl</em> may need to be modified if the default listening ports have been occupied or they are launched remotely.</p>
+
+<p>It's also possible to make these urls the same to share only one datastore. But in practice it will not be efficient and may cause confusion.</p>
+
+<p>Configurations in this file are default settings. A team or its member can override the value on the Web Console's 'Settings' window according to the personal needs.</p>
+
+<h1>Launch the TestMP</h1>
+
+<p>Now we're ready to startup the TestMP!</p>
+
+<ul>
+<li><p>On Windows</p>
+
+<pre><code>  cd TESTMP_HOME/bin
+  startup.bat [port]
+</code></pre></li>
+<li><p>On Linux / Mac</p>
+
+<pre><code>  cd TESTMP_HOME/bin
+  ./startup.sh [port]
+</code></pre></li>
+</ul>
+
+
+<p>The argument <em>port</em> is optional. If it is not given, the Web Console will defaultly use 10080 as the listening port. Then you may see the output like this:</p>
+
+<pre><code>launching testCaseStore on 10081
+launching testDataStore on 10082
+launching testEnvStore on 10083
+launching TestMP web console on 10080
+...
+2013-07-04 14:26:55.634:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:10080
+</code></pre>
+
+<p>which meanse the datastores for test case, data, and environment, and the web console are successfully and fully launched.</p>
+
+<p>Open your favorite browser, enter "http://the_name_or_ip_of_your_host:10080" in the address bar and click Go. You see the the welcome page on the TestMP Web Console? Congratulations!</p>
