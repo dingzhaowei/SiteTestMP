@@ -43,6 +43,8 @@ TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at l
 
 *Note: If you directly implement the test case in your automation project, and run it following the way below, it will also be automatically added to the Web Console.*
 
+*Note: for TestMP v1.0.3, please download [testsync-1.0.3.jar](http://central.maven.org/maven2/org/testmp/testsync/1.0.3/testsync-1.0.3.jar) to replace lib/testsync-1.0.2.jar if you are going to add lib/\*.jar to the classpath.*
+
 # Run Test Case #
 
 Any updates of *@TestDoc* and the test result can be automatically synchronized to the Web Console. The only necessary step is passing the JVM arguments below when running test case:
