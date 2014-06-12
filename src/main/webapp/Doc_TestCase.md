@@ -38,7 +38,7 @@ TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at l
 	<dependency>
 		<groupId>org.testmp</groupId>
 		<artifactId>testsync</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</dependency>
 
 *Note: If you directly implement the test case in your automation project, and run it following the way below, it will also be automatically added to the Web Console.*
