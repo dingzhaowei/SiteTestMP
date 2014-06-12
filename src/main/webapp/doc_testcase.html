@@ -52,18 +52,32 @@
 
 <p>Any updates of <em>@TestDoc</em> and the test result can be automatically synchronized to the Web Console. The only necessary step is passing the JVM arguments below when running test case:</p>
 
-<pre><code>-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://localhost:10081/DataStore.do
+<p>Example:</p>
+
+<pre><code>-DupdateTestDocument=true -DupdateTestMeasures=true -DtestmpAddr=192.168.12.34
 </code></pre>
 
 <ul>
-<li><em>testCaseStoreUrl</em> - specify the datastore of test case.</li>
 <li><em>updateTestDocument</em> - whether to automatically update the test document.</li>
 <li><em>updateTestMeasures</em> - whether to automatically update the test measures.</li>
 <li><em>runHistoryCapacity</em> - the maxium number of test run records that are kept.</li>
+<li><em>testmpAddr</em> - the remote host running TestMP.</li>
+<li><em>testCaseStoreAddr</em> - the remote address of test case store (host:port).</li>
+<li><em>testDataStoreAddr</em> - the remote address of test data store (host:port).</li>
 </ul>
 
 
-<p><em>testCaseStoreUrl</em> defaults to <strong>http://localhost:10081/DataStore.do</strong>; You may need to replace the host name with the actual remote accessing address. <em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong> to avoid unintended updates, like when debuging the test case. <em>runHistoryCapacity</em> defaults to <strong>30</strong>.</p>
+<p>All these arugments have default values:</p>
+
+<ul>
+<li><em>updateTestDocument</em> and <em>updateTestMeasures</em> default to <strong>false</strong>.</li>
+<li><em>runHistoryCapacity</em> defaults to <strong>30</strong>.</li>
+<li><em>testmpAddr</em> defaults to <strong>localhost</strong>.</li>
+<li>TestMP infers <em>testCaseStoreAddr</em> and <em>testDataStoreAddr</em> from <em>testmpAddr</em>.</li>
+</ul>
+
+
+<blockquote><p>You only need to specify <em>testmpAddr</em> when it's running remotely. If test case store and test data store are running not on the same host as TestMP, or not listening to the default ports, then you should specify <em>testCaseStoreAddr</em> and <em>testDataStoreAddr</em> respectively instead of <em>testmpAddr</em>.</p></blockquote>
 
 <p>After the first run from the automation code, you can also launch the test case directly from the Web Console, by clicking the '*' column of each record, or by clicking the 'Run' button on the Web Console's 'TestCase' tab.</p>
 

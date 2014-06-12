@@ -47,14 +47,25 @@ TestMP currently supports binding to TestNG or JUnit tests. For JUnit test, at l
 
 Any updates of *@TestDoc* and the test result can be automatically synchronized to the Web Console. The only necessary step is passing the JVM arguments below when running test case:
 
-	-DupdateTestDocument=true -DupdateTestMeasures=true -DtestCaseStoreUrl=http://localhost:10081/DataStore.do
+Example:
 
-* *testCaseStoreUrl* - specify the datastore of test case.
+	-DupdateTestDocument=true -DupdateTestMeasures=true -DtestmpAddr=192.168.12.34
+
 * *updateTestDocument* - whether to automatically update the test document.
 * *updateTestMeasures* - whether to automatically update the test measures.
 * *runHistoryCapacity* - the maxium number of test run records that are kept.
+* *testmpAddr* - the remote host running TestMP.
+* *testCaseStoreAddr* - the remote address of test case store (host:port).
+* *testDataStoreAddr* - the remote address of test data store (host:port).
 
-*testCaseStoreUrl* defaults to **http://localhost:10081/DataStore.do**; You may need to replace the host name with the actual remote accessing address. *updateTestDocument* and *updateTestMeasures* default to **false** to avoid unintended updates, like when debuging the test case. *runHistoryCapacity* defaults to **30**.
+All these arugments have default values:
+
+* *updateTestDocument* and *updateTestMeasures* default to **false**.
+* *runHistoryCapacity* defaults to **30**.
+* *testmpAddr* defaults to **localhost**.
+* TestMP infers *testCaseStoreAddr* and *testDataStoreAddr* from *testmpAddr*.
+
+>You only need to specify *testmpAddr* when it's running remotely. If test case store and test data store are running not on the same host as TestMP, or not listening to the default ports, then you should specify *testCaseStoreAddr* and *testDataStoreAddr* respectively instead of *testmpAddr*.
 
 After the first run from the automation code, you can also launch the test case directly from the Web Console, by clicking the '*' column of each record, or by clicking the 'Run' button on the Web Console's 'TestCase' tab.
 
